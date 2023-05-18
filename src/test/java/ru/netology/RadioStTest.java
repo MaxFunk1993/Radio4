@@ -4,9 +4,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class RadioStTest {
+    Radio radioSt = new Radio(20);
+    Radio radio2 = new Radio();
+
     @Test
     public void shouleSetStation() {
-        Radio radioSt = new Radio();
+
 
         radioSt.setCurrentStation(9);
 
@@ -18,9 +21,9 @@ public class RadioStTest {
 
     @Test
     public void shouleSetStationZ() {
-        Radio radioSt = new Radio();
 
-        radioSt.setCurrentStation(11);
+
+        radioSt.setCurrentStation(0);
 
         int expected = 0;
         int actual = radioSt.getCurrentStation();
@@ -30,33 +33,8 @@ public class RadioStTest {
 
     @Test
     public void shouleSetStationX() {
-        Radio radioSt = new Radio();
 
         radioSt.setCurrentStation(-1);
-
-        int expected = 9;
-        int actual = radioSt.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shuldSetToMaxStation() {
-        Radio radioSt = new Radio();
-
-        radioSt.setToMaxStation();
-
-        int expected = 9;
-        int actual = radioSt.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shuldSetToMinStation() {
-        Radio radioSt = new Radio();
-
-        radioSt.setToMinStation();
 
         int expected = 0;
         int actual = radioSt.getCurrentStation();
@@ -64,9 +42,10 @@ public class RadioStTest {
         Assertions.assertEquals(expected, actual);
     }
 
+
     @Test
     public void increaseStation() {
-        Radio radioSt = new Radio();
+
         radioSt.setCurrentStation(7);
         radioSt.increaseStation();
 
@@ -78,9 +57,9 @@ public class RadioStTest {
 
     @Test
     public void increaseStationN() {
-        Radio radioSt = new Radio();
-        radioSt.setCurrentStation(9);
-        radioSt.increaseStation();
+
+        radioSt.setCurrentStation(20);
+
 
         int expected = 0;
         int actual = radioSt.getCurrentStation();
@@ -90,7 +69,7 @@ public class RadioStTest {
 
     @Test
     public void reductionStation() {
-        Radio radioSt = new Radio();
+
         radioSt.setCurrentStation(8);
         radioSt.reductionStation();
 
@@ -102,11 +81,89 @@ public class RadioStTest {
 
     @Test
     public void reductionStationN() {
-        Radio radioSt = new Radio();
+
         radioSt.setCurrentStation(0);
         radioSt.reductionStation();
 
+        int expected = 19;
+        int actual = radioSt.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void belowZeroStation() {
+
+        radio2.setCurrentStation(-1);
+        radio2.increaseStation();
+
+        int expected = 1;
+        int actual = radio2.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void TotalRStation10() {
+
+        Assertions.assertEquals(10, radio2.getQantityRStation());
+    }
+
+    @Test
+    public void increaseStation2() {
+
+        radio2.setCurrentStation(7);
+        radio2.increaseStation();
+
+        int expected = 8;
+        int actual = radio2.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void increaseStationN2() {
+
+        radio2.setCurrentStation(9);
+        radio2.increaseStation();
+
+        int expected = 0;
+        int actual = radio2.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void reductionStation2() {
+
+        radio2.setCurrentStation(8);
+        radio2.reductionStation();
+
+        int expected = 7;
+        int actual = radio2.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void reductionStationN2() {
+
+        radio2.setCurrentStation(0);
+        radio2.reductionStation();
+
         int expected = 9;
+        int actual = radio2.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void MoreMaxStation() {
+
+        radioSt.setCurrentStation(21);
+        radioSt.getCurrentStation();
+
+        int expected = 0;
         int actual = radioSt.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
